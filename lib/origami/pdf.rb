@@ -468,6 +468,8 @@ module Origami
                 if xref.is_a?(XRefToCompressedObject)
                     objstm = get_object(xref.objstmno, 0, use_xrefstm: use_xrefstm)
 
+                    return objstm if objstm.nil?
+
                     object = objstm.extract_by_index(xref.index)
                     if object.is_a?(Origami::Object) and object.no == target.refno
                         return object
